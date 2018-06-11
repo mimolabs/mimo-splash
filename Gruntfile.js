@@ -60,11 +60,6 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.client %>/scripts/config.js',
         },
         constants: config.frontend.constants
-        // constants: {
-        //   API_END_POINT: 'https://api.ctapp.io/api/v1',
-        //   API_URL: 'https://api.ctapp.io',
-        //   ENVIRONMENT: 'production'
-        // }
       }
     },
 

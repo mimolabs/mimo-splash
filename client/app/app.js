@@ -33,24 +33,6 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
       reloadOnSearch: false,
       controller: 'LoginsController'
     })
-    .when('/shop', {
-      templateUrl: 'components/logins/index.html',
-      reloadOnSearch: false,
-      controller: 'LoginsController'
-    })
-    .when('/reset', {
-      templateUrl: 'components/guests/reset.html',
-      reloadOnSearch: false,
-      controller: 'LoginsResetGuestController'
-    })
-    .when('/confirm', {
-      templateUrl: 'components/orders/confirm.html',
-      reloadOnSearch: false,
-      controller: 'LoginsShopController'
-    })
-    .when('/hello', {
-      templateUrl: 'components/logins/hello.html',
-    })
     .when('/ctx', {
       templateUrl: 'components/logins/index.html',
       reloadOnSearch: false,
@@ -67,11 +49,6 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider) {
       controller: 'LoginsController'
     })
     .when('/', {
-      templateUrl: 'components/logins/index.html',
-      reloadOnSearch: false,
-      controller: 'LoginsController'
-    })
-    .when('/guest/s/:zone', {
       templateUrl: 'components/logins/index.html',
       reloadOnSearch: false,
       controller: 'LoginsController'
@@ -99,25 +76,8 @@ app.constant('DEVICES', {
   unknown: '999'
 });
 
-app.factory('apInterceptor', ['$q', '$location', '$rootScope', '$routeParams', 'DEVICES', 'CTDebugger',
-  function($q, $location, $rootScope, $routeParams, DEVICES, CTDebugger) {
-
-    var debug = function() {
-      if ($routeParams.debug  === 'true' || window.location.hostname === 'debug.my-wifi.co' || window.location.hostname === 'debug.my-wifi.dev') {
-        return true;
-      }
-    };
-
-    var debugging;
-    var debuggingTool = function(err) {
-      if ( debug() ) {
-        if ( debugging === undefined) {
-          CTDebugger.debug();
-          debugging = true;
-        }
-        console.log(err);
-      }
-    };
+app.factory('apInterceptor', ['$q', '$location', '$rootScope', '$routeParams', 'DEVICES',
+  function($q, $location, $rootScope, $routeParams, DEVICES) {
 
     var response = function (response) {
       return response;
@@ -165,7 +125,6 @@ app.factory('apInterceptor', ['$q', '$location', '$rootScope', '$routeParams', '
     };
 
     var responseError = function(response) {
-      debuggingTool(response);
       return $q.reject(response);
     };
 
