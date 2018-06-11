@@ -3,82 +3,38 @@ jobs:
   build:
     working_directory: ~/circulate
     docker:
-      - image: circleci/node:4.8.2
+      - image: circleci/node:6
     steps:
       - checkout
+
+      # - restore_cache:
+      #     key: dependency-cache-{{ checksum "package.json" }}
+
       # - run:
-      #     name: update-npm
-      #     command: 'sudo npm install -g npm@latest'
+      #     name: Install DEPS
+      #     command: sudo npm install -g bower grunt grunt-cli grunt-karma karma --save-dev
 
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+      # - run:
+      #     name: install-npm-wee
+      #     command: ls && npm install
 
-      - run:
-          name: Install DEPS
-          command: sudo npm install -g bower grunt grunt-cli grunt-karma karma --save-dev
+      # - run:
+      #     name: Should test - please put me back
+      #     command: echo 'Testing is for losers'
 
-      - run:
-          name: install-npm-wee
-          command: ls && npm install
+      # - save_cache:
+      #     key: dependency-cache-{{ checksum "package.json" }}
+      #     paths:
+      #       - ./node_modules
 
-      - run:
-          name: Should test - please put me back
-          command: echo 'Testing is for losers'
-
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - ./node_modules
-
-  deploy:
-    working_directory: ~/circulate
+  docker:
+    working_directory: ~/myapp
     docker:
-      - image: circleci/node:4.8.2
-        environment:
-          RAILS_ENV: test
-
+      - image: alpine:latest
     steps:
-      - checkout
-      - run: bash .circleci/setup-heroku.sh
-
-      - add_ssh_keys:
-          fingerprints:
-            - "86:6d:6a:1e:03:e6:a9:68:13:53:6e:6a:0b:dd:8c:17"
-
-      # - run:
-      #     name: update-npm
-      #     command: 'sudo npm install -g npm@latest'
-
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-
       - run:
-          name: Install DEPS
-          command: sudo npm install -g bower grunt grunt-cli grunt-karma karma --save-dev
-
-      - run:
-          name: Install Bower
-          command: npm install && bower install && npm install grunt-contrib-sass --save
-
-      - run: |
-          grunt build -v \
-          && git config --global user.email "simon@polkaspots.com"\
-          && git config --global user.name "Simon Morley"
-
-      - run: |
-          if [ "$CIRCLE_BRANCH"  == "master" ]
-          then
-            rm -rf dist/.git && grunt buildcontrol:heroku && echo 'Done!'
-          else
-            echo 'Not updating master branch...'
-          fi
-
-          if [ "$CIRCLE_BRANCH"  == "beta" ]
-          then
-            rm -rf dist/.git && grunt buildcontrol:beta && echo 'Done!'
-          else
-            echo 'Not updating beta branch!'
-          fi
+          name: Trigger Docker build
+          command: apk add --no-cache curl && curl -XPOST https://registry.hub.docker.com/u/ohmimo/mimo-splash/trigger/${DOCKER_TOKEN}/
 
 workflows:
   version: 2
@@ -93,3 +49,12 @@ workflows:
               only:
                 - master
                 - beta
+                - dev
+      - docker:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+
