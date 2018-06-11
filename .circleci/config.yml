@@ -7,26 +7,6 @@ jobs:
     steps:
       - checkout
 
-      # - restore_cache:
-      #     key: dependency-cache-{{ checksum "package.json" }}
-
-      # - run:
-      #     name: Install DEPS
-      #     command: sudo npm install -g bower grunt grunt-cli grunt-karma karma --save-dev
-
-      # - run:
-      #     name: install-npm-wee
-      #     command: ls && npm install
-
-      # - run:
-      #     name: Should test - please put me back
-      #     command: echo 'Testing is for losers'
-
-      # - save_cache:
-      #     key: dependency-cache-{{ checksum "package.json" }}
-      #     paths:
-      #       - ./node_modules
-
   docker:
     working_directory: ~/myapp
     docker:
