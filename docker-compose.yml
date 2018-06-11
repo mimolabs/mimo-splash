@@ -1,6 +1,6 @@
 version: '3'
 services:
-  dashboard:
+  splash:
     restart: always
     build: .
     # image: "ohmimo/mimo-frontend"
@@ -12,7 +12,10 @@ services:
       - NODE_ENV=production
     volumes:
         - shared-volume:/etc/mimo
-    command: bash -c "cd /opt/app && ./wait-for-it.sh && grunt build && node ./dist/server/app.js"
+    # command: bash -c "cd /opt/app && ./wait-for-it.sh && grunt build && node ./dist/server/app.js"
+    command: bash -c "cd /opt/app && grunt build && node ./dist/server/app.js"
+    ports:
+      - 8081:8080
 
 volumes:
   shared-volume:

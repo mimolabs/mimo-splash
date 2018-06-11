@@ -2,8 +2,6 @@ FROM node:6
 
 MAINTAINER MIMO!
 
-# WORKDIR /opt/app/dist
-
 ADD package.json /tmp/package.json
 ADD bower.json /tmp/bower.json
 
