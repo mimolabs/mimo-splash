@@ -2,12 +2,24 @@
 'use strict';
 
 module.exports = function (grunt) {
+  var _ = require('lodash');
   var localConfig;
   try {
     localConfig = require('./server/config/local.env');
   } catch(e) {
     localConfig = {};
   }
+
+  var defaultConfig = require('./default-config.js');
+
+  var buildConfig;
+  try {
+    buildConfig = require('/etc/mimo/build.config.js');
+  } catch(e) {
+    console.log('No build config, continuing.....');
+  }
+
+  var config = _.merge(localConfig, buildConfig, defaultConfig);
 
   grunt.loadNpmTasks('grunt-ng-constant');
 
@@ -40,19 +52,19 @@ module.exports = function (grunt) {
         },
         constants: {
           API_END_POINT: 'http://mimo.api:3000/api/v1',
-          API_URL: 'http://mimo.api:3000',
-          ENVIRONMENT: 'development'
+          API_URL: 'http://mimo.api:3000'
         }
       },
       production: {
         options: {
           dest: '<%= yeoman.client %>/scripts/config.js',
         },
-        constants: {
-          API_END_POINT: 'https://api.ctapp.io/api/v1',
-          API_URL: 'https://api.ctapp.io',
-          ENVIRONMENT: 'production'
-        }
+        constants: config.frontend.constants
+        // constants: {
+        //   API_END_POINT: 'https://api.ctapp.io/api/v1',
+        //   API_URL: 'https://api.ctapp.io',
+        //   ENVIRONMENT: 'production'
+        // }
       }
     },
 
@@ -417,24 +429,11 @@ module.exports = function (grunt) {
         connectCommits: false,
         message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
       },
-      beta: {
+      heroku: {
         options: {
-          remote: 'git@heroku.com:beta-login-pages.git',
+          remote: 'git@heroku.com:salty-shore-3757.git',
           branch: 'master',
           force: true
-        }
-      },
-        heroku: {
-          options: {
-            remote: 'git@heroku.com:salty-shore-3757.git',
-            branch: 'master',
-            force: true
-          }
-        },
-      openshift: {
-        options: {
-          remote: 'openshift',
-          branch: 'master'
         }
       }
     },
@@ -632,6 +631,25 @@ module.exports = function (grunt) {
     ]);
   });
 
+  grunt.registerTask('build', [
+    'clean:dist',
+    'configServer',
+    'ngconstant:production',
+    'concurrent:dist',
+    'wiredep',
+    'useminPrepare',
+    'autoprefixer',
+    'ngtemplates',
+    'concat',
+    'ngAnnotate',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    'rev',
+    'usemin'
+  ]);
+
   grunt.registerTask('server', function () {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
     grunt.task.run(['serve']);
@@ -683,7 +701,6 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'ngconstant:production',
-    // 'injector:sass',
     'concurrent:dist',
     'injector',
     'wiredep',

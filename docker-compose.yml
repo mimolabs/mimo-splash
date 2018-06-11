@@ -1,0 +1,18 @@
+version: '3'
+services:
+  dashboard:
+    restart: always
+    build: .
+    # image: "ohmimo/mimo-frontend"
+    # image: "ohmimo/mimo-dash"
+    # env_file:
+    #   - production.vars
+    #   - dashboard.vars
+    environment:
+      - NODE_ENV=production
+    volumes:
+        - shared-volume:/etc/mimo
+    command: bash -c "cd /opt/app && ./wait-for-it.sh && grunt build && node ./dist/server/app.js"
+
+volumes:
+  shared-volume:

@@ -20,8 +20,7 @@
     "morgan": "~1.0.0",
     "oauth": "^0.9.15",
     "query-string": "^5.1.0",
-    "request": "^2.83.0",
-    "serve-favicon": "~2.0.1"
+    "request": "^2.83.0"
   },
   "devDependencies": {
     "cli-color": "^1.1.0",
