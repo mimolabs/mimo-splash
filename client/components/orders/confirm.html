@@ -1,0 +1,42 @@
+<div class="store">
+  <build-page></build-page>
+  <div ng-hide="state.status == 'loading'" ng-cloak>
+    <div class='row'>
+      <div class='small-12'>
+        <div class="location_logo ng-scope" ng-hide="splash.header_image_name">
+          <a href='{{splash.website}}'><img src="{{ splash.logo_file_name }}" ng-class="splash.header_image_type == 1 ? 'logo' : 'banner'"></img></a>
+        </div>
+      </div>
+    </div>
+    <div class='inner_container'>
+      <div class='row' ng-show="state.order == 'loading'">
+        <div class='small-12 medium-6 medium-centered'>
+          <br>
+          <br>
+          <h1>Processing, please hold tight</h1>
+          <p>Don't refresh the page, we'll send you on your way soon.</p>
+        </div>
+      </div>
+      <div class='row' ng-show="state.order == undefined">
+        <div class='small-12'>
+          <h1>Your order is {{ order.state || 'processing...'}}</h1>
+          <div ng-show="order.state == 'pending'">
+            <h3>Let's finish things up, <b>you have not been charged yet</b>.</h3>
+          </div>
+          <div ng-show="order.state == 'complete'">
+            <h2>Hey, that's awesome! We've charged your PayPal account and you can now login.</h2>
+          </div>
+          <!-- <hr> -->
+          <finalise-order state="order.state">
+            <guest-login reg="{{ splash.allow_registration }}"></guest-login>
+          </finalise-order>
+        </div>
+      </div>
+    </div>
+    <div class="row footer">
+      <div id="footer-right" class="small-12 medium-6">
+        <a href="{{ splash.terms_url }}" class="right">Terms and Conditions</a>
+      </div>
+    </div>
+  </div>
+</div>

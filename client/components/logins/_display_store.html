@@ -1,0 +1,129 @@
+<div ng-show="showcart == true">
+
+  <div ng-hide="redirecting || stripe">
+
+    <span ng-show="cart.products.length">
+      <h2><b>You have {{ cart.products.length }} Internet voucher in your cart.</b> <a href="" ng-click="emptyCart()">Empty cart</a>.</h2>
+
+      <div class="row">
+        <div class="small-12 medium-8 columns medium-centered">
+          <div class="panel">
+            <h3>{{ cart.products[0].value / 100 | currency: store.currency }} {{ cart.products[0].description }}</h3>
+          </div>
+        </div>
+      </div>
+    </span>
+
+    <span ng-show="cart.store.merchant_type == 'paypal'">
+      <p><b>Buy Now With PayPal</b></p>
+      <a href="" ng-click="paypal()">
+        <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif">
+      </a>
+    </span>
+
+    <span ng-show="cart.store.merchant_type == 'sagepay'">
+      <div ng-hide="redirecting == true">
+        <form name="myForm" ng-submit="saveSage()">
+          <div class="row">
+            <div class="small-12 medium-8 large-6 medium-centered columns">
+              <h3>Fill in your details to purchase your voucher</h3>
+              <div class="row">
+
+                <div class="large-12 columns">
+                  <label>Enter your Email</label>
+                  <input type="email" name="email" ng-model="customer.email" placeholder="Enter your email" required><br>
+                  <span class="text-error" ng-show='myForm.email.$error.required'><small>Email is required.</small><br></span>
+                  <span class="text-error" ng-show='myForm.email.$error.email'><small>Email is invalid.</small></span>
+                </div>
+
+                <div class="row">
+                  <div class="large-6 columns">
+                    <label>First Name</label>
+                    <input type="text" name="firstn" ng-model="customer.first_name" placeholder="First name" required>
+                  </div>
+                  <div class="large-6 columns">
+                    <label>Last Name</label>
+                    <input type="text" name="lastn" ng-model="customer.last_name" placeholder="Last name" required>
+                  </div>
+                  <span class="text-error" ng-show='myForm.firstn.$error.required || myFrom.lastn.$error.required'><small>First name and surname are required.</small></span><br>
+                </div>
+
+                <div class="row">
+                  <div class="large-6 columns">
+                    <label>Address 1</label>
+                    <input type="text" name="address" ng-model="customer.address1" placeholder="Your first name" required>
+                  </div>
+                  <div class="large-6 columns">
+                    <label>Address 2</label>
+                    <input type="text" ng-model="customer.address2" placeholder="Your surname">
+                  </div>
+                  <span class="text-error" ng-show='myForm.address.$error.required'><small>An address is required.</small><br></span>
+                </div>
+
+                <div class="row">
+                  <div class="large-6 columns">
+                    <label>City</label>
+                    <input type="text" name="city" ng-model="customer.city" placeholder="City or town" required>
+                  </div>
+                  <div class="large-6 columns">
+                    <label>Postcode
+                    </label>
+                    <input type="text" name="zip" ng-model="customer.zip" placeholder="Postal / Zip code" require>
+                  </div>
+                  <span class="text-error" ng-show='myForm.city.$error.required || myForm.zip.$error.required'><small>A city and postcode are required.</small><br></span>
+                </div>
+              </div>
+              <hr>
+              <button ng-disabled="myForm.$invalid || myForm.$pristine" class="button btn">Purchase</button>
+              <p>You'll be redirected to Sage to enter your card details securely</p>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </span>
+  </div>
+
+  <div ng-if="redirecting">
+    <br>
+    <h1>Redirecting you to {{ cart.store.merchant_type == 'paypal' ? "PayPal" : "Sage" }}, please hold tight</h1>
+    <p>Don't refresh the page, we'll send you on your way soon.</p>
+  </div>
+
+  <div ng-show="stripe">
+    <h2>Processing order, please wait. Do not refresh the page.</h2>
+  </div>
+
+  <div ng-hide="stripe || !stripe_loaded || !cartId || (cart.state == 'processing' || cart.state == 'complete')">
+    <button id="customButton" class="button success" ng-click="stripePayment()">Purchase</button>
+  </div>
+
+  <div ng-hide="stripe || redirecting || (cart.state === 'processing')" class="small-12 medium-10 small-centered columns">
+    <div ng-show="products.length">
+      <h1><b>Choose {{ cart.products.length ? 'another' : 'a' }} Voucher</b></h1>
+      <p>Purchase this now or, <b><a href="" ng-click="goHome()">click here</a></b> to go back to the login page</p>
+      <table width="100%">
+        <tr>
+          <th>Cost</th>
+          <th>Description</th>
+          <th>Purchase</th>
+        </tr>
+        <tr ng-repeat='product in products'>
+          <td>{{ product.value / 100 | currency : store.currency  }}</td>
+          <td>
+            {{ product.description || 'No description' }}
+            <br>
+            <small>{{product.duration}} {{ product.distance }} </small>
+          </td>
+          <td><a href="" ng-click="addToCart(product._id)"><i ng-hide="adding == product._id" class="fa fa-cart-plus fa-2x"></i> <span ng-if="adding == product._id"><i class="fa fa-spinner fa-spin fa-2x"></i></span></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<div ng-if="cart.state == 'complete'">
+  <display-order></display-order>
+</div>
+

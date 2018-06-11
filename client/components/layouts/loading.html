@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="small-12 columns">
+    <div class="loading">
+      <span ng-hide="errors">
+        <h1 ng-show="state.status == 'loading'"><i class="fa fa-cog fa-spin fx-1x"></i></h1>
+        <h1 ng-show="state.status == 'login'">Authenticating <i class="fa fa-cog fa-spin fx-1x"></i></h1>
+        <!-- <pre><p>{{ state }}</p></pre> -->
+      </span>
+      <span ng-show="errors">
+        <h3>An unknown error has occured loading the login page.</h3>
+      </span>
+    </div>
+  </div>
+</div>
+

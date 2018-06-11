@@ -1,0 +1,25 @@
+<div class="reset">
+  <div ng-hide="loading" ng-cloak>
+    <div class='row'>
+      <div class='small-12 columns'>
+        <div class="location_logo ng-scope">
+          <a ng-if="brand.website && brand.logo" href='{{brand.website}}'><img src="{{ brand.logo }}" class="logo" width='200'></img></a>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='small-12 medium-12 columns'>
+        <p>You've arrived on the password reset page.</p>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='small-12 medium-6 columns'>
+        <guest-reset></guest-reset>
+        <p>It can take a few seconds to change the password.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+

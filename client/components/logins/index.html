@@ -1,0 +1,66 @@
+<meta name="theme-color" content="{{splash.body_background_colour}}">
+<meta name="msapplication-navbutton-color" content="{{splash.body_background_colour}}">
+<meta name="apple-mobile-web-app-status-bar-style" content="{{splash.body_background_colour}}">
+<script>
+$(document).ready( function() {
+
+  loadPopupBox();
+
+  function unloadPopupBox() {
+    $('#popup_container').fadeOut("slow");
+  }
+
+  function loadCloseButton() {
+    $('#popupCounter').hide();
+    $('#popupBoxClose').show().css("display", "inline-block");
+  }
+
+  function loadPopupBox() {
+    var counter = 5;
+    var id;
+    $('#popup_container').fadeIn("slow");
+    id = setInterval(function() {
+      counter--;
+      if(counter < 0) {
+        clearInterval(id);
+        loadCloseButton();
+      } else {
+        $("#countDown").text(counter.toString() + " sec");
+      }
+    }, 1000);
+
+    $('#popupBoxClose').click( function() {
+      unloadPopupBox();
+    });
+
+  }
+});
+</script>
+<popup-advert ng-show="splash.popup_image" ng-hide="splash.popup_ad == false || state.errors"></popup-advert>
+<build-page></build-page>
+
+<div ng-show="state.errors" ng-cloak>
+  <div class="inner_container">
+    <div class='error'><span ng-bind-html="state.errors"></span></div>
+  </div>
+</div>
+
+<div ng-hide="state.errors" ng-cloak>
+  <div class='row'>
+    <div class='small-12'>
+      <div class="location_logo" ng-if="splash.header_image_type == 1">
+        <img src="{{ splash.logo_file_name }}" ng-class="splash.header_image_type == 1 ? 'logo' : 'banner'"></img>
+      </div>
+      <div class="banner" ng-if="splash.header_image_type == 2">
+        <img src="{{ splash.header_image_name }}" class='banner'></img>
+      </div>
+    </div>
+  </div>
+  <div class='inner_container'>
+    <div class='row'>
+      <div class='small-12'>
+        <logins-partial></logins-partial>
+      </div>
+    </div>
+  </div>
+</div>

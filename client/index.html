@@ -1,0 +1,115 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <base href="/">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(client) app/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/foundation/css/foundation.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css({.tmp,client}) app/app.css -->
+  <link rel="stylesheet" href="app/app.css">
+  <!-- injector:css -->
+  <link rel="stylesheet" href="app/main/main.css">
+  <!-- endinjector -->
+  <!-- endbuild -->
+</head>
+<!-- <body> -->
+<body ng-app="ctLoginsApp" class="{{bodylayout}}" ng-cloak>
+  <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div ng-show="debug.active" class="debugger show-for-print">
+      <h2>Your splash pages are in debug mode. Please disable this in your splash settings once you're finished.</h2>
+      <ul class="no-bullet" ng-repeat="msg in debug.messages">
+        <li>
+          {{ msg }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="hide-for-print">
+      <div ng-show="state.status == 'loading' || state.status == 'login'" ng-cloak>
+        <div ng-include="'components/layouts/loading.html'"></div>
+      </div>
+      <div class="{{ banneralert || 'hidden' }}"><b>{{ error }}</b></div>
+      <div class='container'>
+
+        <consent-form ng-hide="state.errors" backup-sms="{{splash.backup_sms}}" terms-url="{{splash.terms_url}}" backup-email="{{splash.backup_email}}" powered-by-name="{{splash.powered_by_name}}" location-name="{{splash.location_name}}" hide-terms="{{splash.hide_terms}}" powered-by="{{splash.powered_by}}" newsletter-consent="{{splash.newsletter_consent}}" gdpr-email-field="{{splash.gdpr_email_field}}" gdpr-sms-field="{{splash.gdpr_sms_field}}" gdpr-contact-message="{{splash.gdpr_contact_message}}" gdpr-form="{{splash.gdpr_form}}" is-clickthrough="{{splash.is_clickthrough}}"></consent-form>
+
+        <div class='splash-container' ng-class="state.hidden ? 'hidden' : ''">
+          <div ng-view=""></div>
+        </div>
+      </div>
+    </div>
+
+    <google-analytics id="{{ gaid }}"></google-analytics>
+
+    <!--[if lt IE 9]>
+      <script src="bower_components/es5-shim/es5-shim.js"></script>
+      <script src="bower_components/json3/lib/json3.min.js"></script>
+      <![endif]-->
+      <!-- build:js({client,node_modules}) app/vendor.js -->
+      <!-- bower:js -->
+      <script src="bower_components/jquery/dist/jquery.js"></script>
+      <script src="bower_components/angular/angular.js"></script>
+      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+      <script src="bower_components/angular-resource/angular-resource.js"></script>
+      <script src="bower_components/angular-route/angular-route.js"></script>
+      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+      <script src="bower_components/fastclick/lib/fastclick.js"></script>
+      <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
+      <script src="bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+      <script src="bower_components/foundation/js/foundation.js"></script>
+      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/ngstorage/ngStorage.js"></script>
+      <script src="bower_components/oauth-js/dist/oauth.min.js"></script>
+      <!-- endbower -->
+      <!-- endbuild -->
+
+      <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.2/jquery.xdomainrequest.min.js" type="text/javascript"></script> -->
+      <!-- build:js({.tmp,client}) app/app.js -->
+      <script src="app/app.js"></script>
+      <!-- injector:js -->
+      <script src="app/main/main.controllers.js"></script>
+      <script src="app/main/main.directives.js"></script>
+      <script src="app/main/main.filters.js"></script>
+      <script src="app/main/main.js"></script>
+      <script src="app/main/main.services.js"></script>
+      <script src="components/aerohive/aerohive.services.js"></script>
+      <script src="components/aruba/aruba.services.js"></script>
+      <script src="components/cisco/cisco.services.js"></script>
+      <script src="components/coova/coova.services.js"></script>
+      <script src="components/facebook/facebook.directives.js"></script>
+      <script src="components/facebook/facebook.services.js"></script>
+      <script src="components/google/google.directives.js"></script>
+      <script src="components/guests/guests.directives.js"></script>
+      <script src="components/linkedin/linkedin.directives.js"></script>
+      <script src="components/logins/logins.controller.js"></script>
+      <script src="components/logins/logins.directives.js"></script>
+      <script src="components/logins/logins.filters.js"></script>
+      <script src="components/logins/logins.services.js"></script>
+      <script src="components/main/main.directives.js"></script>
+      <script src="components/microtik/microtik.services.js"></script>
+      <script src="components/orders/orders.directives.js"></script>
+      <script src="components/orders/orders.services.js"></script>
+      <script src="components/ruckus/ruckus.services.js"></script>
+      <script src="components/social/social.directives.js"></script>
+      <script src="components/tony/tony.services.js"></script>
+      <script src="components/twitter/twitter.directives.js"></script>
+      <script src="components/xirrus/xirrus.services.js"></script>
+      <script src="scripts/config.js"></script>
+      <!-- endinjector -->
+      <!-- endbuild -->
+</body>
+</html>

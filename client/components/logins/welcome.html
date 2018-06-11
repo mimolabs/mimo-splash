@@ -1,0 +1,22 @@
+<build-page></build-page>
+<div ng-hide="loading" ng-cloak>
+  <div class='row'>
+    <div class='small-12'>
+      <div class="location_logo ng-scope" ng-hide="splash.header_image_name">
+        <a href='{{splash.website}}'><img src="{{ splash.logo_file_name }}" ng-class="splash.header_image_type == 1 ? 'logo' : 'banner'"></img></a>
+      </div>
+    </div>
+  </div>
+  <div class='inner_container'>
+    <div class='row'>
+      <div class='small-12'>
+        <welcome></welcome>
+      </div>
+    </div>
+  </div>
+  <div class="row footer">
+    <div id="footer-right" class="small-12 medium-6">
+      <a href="{{ splash.terms_url }}" class="right">Terms and Conditions</a>
+    </div>
+  </div>
+</div>
