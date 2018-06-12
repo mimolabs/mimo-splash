@@ -69,7 +69,6 @@ module.exports = function(app) {
     query.code = req.query.code;
     query.grant_type = 'authorization_code';
 
-    console.log(query)
     var url = 'https://www.googleapis.com/oauth2/v4/token';
     request.post({url: url, qs: query}, function(err, response, body) {
       if(err) {

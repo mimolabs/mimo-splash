@@ -60,13 +60,13 @@ app.directive('facebook', ['$window', '$compile', '$q', '$rootScope', '$localSto
         appId = attrs.appId;
       }
 
-      if (attrs.appId === '' || attrs.appId === null) {
-        appId = '468282836525087'; // ct
-      }
+      // if (attrs.appId === '' || attrs.appId === null) {
+      //   appId = '468282836525087'; // ct
+      // }
 
-      if (mimo.indexOf(window.location.hostname) >= 0) {
-        appId = '177303432997780';
-      }
+      // if (mimo.indexOf(window.location.hostname) >= 0) {
+      //   appId = '177303432997780';
+      // }
 
       console.log('Using APP ID:', appId);
 
