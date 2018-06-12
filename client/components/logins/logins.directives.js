@@ -1223,20 +1223,14 @@ app.directive('consentForm', ['CONSENT', '$location', '$compile', '$window', '$r
       var template =
         '<span ng-show="gdprForm == \'false\'">'+
         '<div class="gdpr-tab close">'+
-        '<span ng-show="poweredBy == \'true\'">'+
-        '<img ng-if="poweredByName == \'MIMO\'" src="https://d247kqobagyqjh.cloudfront.net/api/file/8Zw1a8xJQbCqGIjVOJF6"></img>'+
-        '<img ng-if="poweredByName == \'Cucumber Tony\'" src="https://d247kqobagyqjh.cloudfront.net/api/file/KflR9VnS1KUuKOCOmFAo"></img>'+
-        '</span>'+
+        '<img src="https://d247kqobagyqjh.cloudfront.net/api/file/8Zw1a8xJQbCqGIjVOJF6"></img>'+
         '</div>'+
         '</span>'+
         '<span ng-show="gdprForm == \'true\'">'+
         '<div class="gdpr-back submitted" ng-click="gdprToggle()"></div>'+
         '<div class="gdpr-slider close">'+
         '<div class="gdpr-tab" ng-click="gdprToggle()">'+
-        '<span ng-show="poweredBy == \'true\'">'+
-        '<img ng-if="poweredByName == \'MIMO\'" src="https://d247kqobagyqjh.cloudfront.net/api/file/8Zw1a8xJQbCqGIjVOJF6"></img>'+
-        '<img ng-if="poweredByName == \'Cucumber Tony\'" src="https://d247kqobagyqjh.cloudfront.net/api/file/KflR9VnS1KUuKOCOmFAo"></img>'+
-        '</span>'+
+        '<img src="https://d247kqobagyqjh.cloudfront.net/api/file/8Zw1a8xJQbCqGIjVOJF6"></img>'+
         '</div>'+
         '<div class="gdpr-body">'+
         '<div class="row align-center">'+
@@ -1246,18 +1240,8 @@ app.directive('consentForm', ['CONSENT', '$location', '$compile', '$window', '$r
         '<form id="gdpr-form" ng-submit="gdprSubmit()">'+
         '<fieldset class="gdpr-fields">'+
         '<legend>You must accept the terms of service</legend>'+
-        '<span ng-if="poweredByName == \'MIMO\'">'+
         '<p>Read MIMO\'s full terms of service <a href="https://www.oh-mimo.com/terms/users" target="_blank">here.</a></p>'+
         '<input id="mimo_terms" ng-model="consent.terms" type="checkbox" required><label for="mimo_terms">I agree to the terms of service</label><br>'+
-        '</span>'+
-        '<span ng-if="poweredByName == \'Cucumber Tony\'">'+
-        '<p>Read CT\'s full terms of service <a href="https://www.ct-networks.io/terms/users" target="_blank">here.</a></p>'+
-        '<input id="ct_terms" type="checkbox" required><label for="mimo_terms">I agree to the terms of service</label><br>'+
-        '</span>'+
-        '<span ng-if="poweredBy == \'false\'">'+
-        '<p>Read {{locationName}}\'s full terms of service <a href="{{termsUrl}}" target="_blank">here.</a></p>'+
-        '<input id="location_terms" type="checkbox" required><label for="location_terms">I agree to the terms of service</label><br>'+
-        '</span>'+
         '</fieldset>'+
         '<div ng-if="isClickthrough == \'false\'">'+
         '<span ng-if="newsletterConsent == \'false\'">'+
