@@ -6,7 +6,7 @@ ADD package.json /tmp/package.json
 ADD bower.json /tmp/bower.json
 
 RUN \
-  cd /tmp && \
+  cd /tmp && echo 123 &&\
   npm install -g bower grunt-cli && \
   npm install --production && \
   mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app
