@@ -2,7 +2,7 @@ version: '3'
 services:
   splash:
     restart: always
-    build: .
+    image: ohmimo/mimo-splash:latest
     environment:
       - NODE_ENV=production
     volumes:
