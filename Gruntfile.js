@@ -1,4 +1,3 @@
-// Generated on 2015-01-19 using generator-angular-fullstack 2.0.13
 'use strict';
 
 module.exports = function (grunt) {
@@ -10,7 +9,7 @@ module.exports = function (grunt) {
     localConfig = {};
   }
 
-  var defaultConfig = require('./default-config.js');
+  // var defaultConfig = require('./default-config.js');
 
   var buildConfig;
   try {
@@ -19,7 +18,8 @@ module.exports = function (grunt) {
     console.log('No build config, continuing.....');
   }
 
-  var config = _.merge(localConfig, buildConfig, defaultConfig);
+  // var config = _.merge(localConfig, buildConfig, defaultConfig);
+  var config = _.merge(localConfig, buildConfig);
 
   grunt.loadNpmTasks('grunt-ng-constant');
 
