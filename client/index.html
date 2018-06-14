@@ -45,7 +45,7 @@
       <div class="{{ banneralert || 'hidden' }}"><b>{{ error }}</b></div>
       <div class='container'>
 
-        <consent-form ng-hide="state.errors" backup-sms="{{splash.backup_sms}}" terms-url="{{splash.terms_url}}" backup-email="{{splash.backup_email}}" powered-by-name="{{splash.powered_by_name}}" location-name="{{splash.location_name}}" hide-terms="{{splash.hide_terms}}" powered-by="{{splash.powered_by}}" newsletter-consent="{{splash.newsletter_consent}}" gdpr-email-field="{{splash.gdpr_email_field}}" gdpr-sms-field="{{splash.gdpr_sms_field}}" gdpr-contact-message="{{splash.gdpr_contact_message}}" gdpr-form="{{splash.gdpr_form}}" is-clickthrough="{{splash.is_clickthrough}}"></consent-form>
+        <consent-form ng-hide="state.errors" backup-sms="{{splash.backup_sms}}" terms-url="{{splash.terms_url}}" backup-email="{{splash.backup_email}}" powered-by-name="{{splash.powered_by_name}}" location-name="{{splash.splash_name}}" hide-terms="{{splash.hide_terms}}" powered-by="{{splash.powered_by}}" newsletter-consent="{{splash.newsletter_consent}}" gdpr-email-field="{{splash.gdpr_email_field}}" gdpr-sms-field="{{splash.gdpr_sms_field}}" gdpr-contact-message="{{splash.gdpr_contact_message}}" gdpr-form="{{splash.gdpr_form}}" is-clickthrough="{{splash.is_clickthrough}}"></consent-form>
 
         <div class='splash-container' ng-class="state.hidden ? 'hidden' : ''">
           <div ng-view=""></div>
