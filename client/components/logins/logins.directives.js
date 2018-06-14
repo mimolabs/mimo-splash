@@ -540,8 +540,16 @@ app.directive('forgotPassword', ['$timeout', '$location', '$compile', 'CT', func
 
 }]);
 
-app.directive('loginsPartial', ['$location', function($location) {
+app.directive('loginsPartial', ['$location', 'API_URL', function($location, API_URL) {
   var link = function(scope, element, attrs) {
+
+    scope.twitterIcon = API_URL + '/splash/twitter-icon.svg';
+    scope.googleIcon = API_URL + '/splash/google-icon.svg';
+    scope.facebookIcon = API_URL + '/splash/facebook-icon.svg';
+    scope.pinterestIcon = API_URL + '/splash/pinterest-icon.svg';
+    scope.instagramIcon = API_URL + '/splash/instagram-icon.svg';
+    scope.linkedinIcon = API_URL + '/splash/linkedin-icon.svg';
+
     scope.partial = function() {
       if ($location.path() === '/shop') {
         return 'components/logins/_shop.html';
@@ -790,6 +798,21 @@ app.directive('buildPage', ['$location', '$compile', '$window', '$rootScope', '$
 
     var buildPage = function(data) {
 
+      scope.smsDark = API_URL + '/splash/sms-dark.svg';
+      scope.smsLight = API_URL + '/splash/sms-light.svg';
+      scope.codeDark = API_URL + '/splash/code-dark.svg';
+      scope.codeLight = API_URL + '/splash/code-light.svg';
+      scope.emailDark = API_URL + '/splash/email-dark.svg';
+      scope.emailLight = API_URL + '/splash/email-light.svg';
+      scope.voucherDark = API_URL + '/splash/voucher-dark.svg';
+      scope.voucherLight = API_URL + '/splash/voucher-light.svg';
+      scope.passwordDark = API_URL + '/splash/password-dark.svg';
+      scope.passwordLight = API_URL + '/splash/password-light.svg';
+      scope.facebookLogin = API_URL + '/splash/facebook-login.png';
+      scope.twitterLogin = API_URL + '/splash/twitter-login.png';
+      scope.googleLogin = API_URL + '/splash/google-login.png';
+      scope.socialDark = API_URL + '/splash/social-dark.svg';
+
       var head = angular.element('head');
       var template;
 
@@ -1027,64 +1050,120 @@ app.directive('buildPage', ['$location', '$compile', '$window', '$rootScope', '$
         '\tbox-shadow: {{splash.button_shadow ? \'0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);\' : \'0 0px 0px rgba(0,0,0,0.0)\'}};\n'+
         '}\n\n'+
 
-        '.social.sms-access, .social.sms-access:hover, .social.sms-access:focus, .social.facebook, .social.facebook:hover,.social.facebook:focus, .social.google, .social.google:hover,.social.google:focus, .social.twitter, .social.twitter:hover,.social.twitter:focus, .button.social-access::after, .button.email-access::after, .button.voucher-access::after {\n'+
+        '.social.facebook, .social.facebook:hover,.social.facebook:focus, .social.google, .social.google:hover,.social.google:focus, .social.twitter, .social.twitter:hover,.social.twitter:focus, .button.social-access::after, .button.email-access::after, .button.voucher-access::after {\n'+
         '\tbackground-position: {{splash.button_radius === \'9001px\' ? \'20px\' : \'10px\'}} 10px!important;\n'+
         '}\n\n'+
 
         '.social.voucher-access {\n'+
         '\tbackground-color: {{splash.voucher_button_colour}};\n'+
         '\tcolor: {{splash.voucher_btn_font_colour}};\n'+
-        '\tbackground-image: url({{splash.voucher_button_icon ? \'https://d247kqobagyqjh.cloudfront.net/api/file/Pqc5UMwtQ764Brl4a9A2\' : \'https://d247kqobagyqjh.cloudfront.net/api/file/oefOuGVjSeqxT3o8JUZO\' }});\n'+
+        '\tbackground-image: url({{splash.voucher_button_icon ? voucherDark : voucherLight }});\n'+
         '\tbackground-position: {{splash.button_radius === \'9001px\' ? \'20px\' : \'10px\'}} 10px;\n'+
         '\tborder: 1px solid {{splash.voucher_button_border_colour}}!important;\n'+
         '}\n\n'+
 
         '.social.voucher-access:hover, .social.voucher-access:focus {\n'+
         '\tcolor: {{splash.voucher_btn_font_colour}};\n'+
-        '\tbackground-image: url({{splash.voucher_button_icon ? \'https://d247kqobagyqjh.cloudfront.net/api/file/Pqc5UMwtQ764Brl4a9A2\' : \'https://d247kqobagyqjh.cloudfront.net/api/file/oefOuGVjSeqxT3o8JUZO\' }});\n'+
+        '\tbackground-image: url({{splash.voucher_button_icon ? voucherDark : voucherLight }});\n'+
         '\tbackground-position: {{splash.button_radius === \'9001px\' ? \'20px\' : \'10px\'}} 10px;\n'+
         '}\n\n'+
 
         '.social.password-access {\n'+
         '\tbackground-color: {{splash.password_button_colour}};\n'+
         '\tcolor: {{splash.password_btn_font_colour}};\n'+
-        '\tbackground-image: url({{splash.password_button_icon ? \'https://d247kqobagyqjh.cloudfront.net/api/file/UDXA7p6KRsC3eJ2Jx1ZN\' : \'https://d247kqobagyqjh.cloudfront.net/api/file/anRrI4EmQJOCuq8F7aUe\' }});\n'+
+        '\tbackground-image: url({{splash.password_button_icon ? passwordDark : passwordLight }});\n'+
         '\tbackground-position: {{splash.button_radius === \'9001px\' ? \'20px\' : \'10px\'}} 10px;\n'+
         '\tborder: 1px solid {{splash.password_button_border_colour}}!important;\n'+
         '}\n\n'+
 
         '.social.password-access:hover, .social.password-access:focus {\n'+
         '\tcolor: {{splash.password_btn_font_colour}};\n'+
-        '\tbackground-image: url({{splash.password_button_icon ? \'https://d247kqobagyqjh.cloudfront.net/api/file/UDXA7p6KRsC3eJ2Jx1ZN\' : \'https://d247kqobagyqjh.cloudfront.net/api/file/anRrI4EmQJOCuq8F7aUe\' }});\n'+
+        '\tbackground-image: url({{splash.password_button_icon ? passwordDark : passwordLight }});\n'+
         '\tbackground-position: {{splash.button_radius === \'9001px\' ? \'20px\' : \'10px\'}} 10px;\n'+
         '}\n\n'+
 
         '.social.code-access {\n'+
         '\tbackground-color: {{splash.codes_button_colour}};\n'+
         '\tcolor: {{splash.codes_btn_font_colour}};\n'+
-        '\tbackground-image: url({{splash.codes_button_icon ? \'https://d247kqobagyqjh.cloudfront.net/api/file/hsHgqCkWS2OIf8P2p23G\' : \'https://d247kqobagyqjh.cloudfront.net/api/file/zbxXh1LkSiufAjkzyxai\' }});\n'+
+        '\tbackground-image: url({{splash.codes_button_icon ? codeDark : codeLight }});\n'+
         '\tbackground-position: {{splash.button_radius === \'9001px\' ? \'20px\' : \'10px\'}} 10px;\n'+
         '\tborder: 1px solid {{splash.codes_button_border_colour}}!important;\n'+
         '}\n\n'+
 
         '.social.code-access:hover, .social.code-access:focus {\n'+
         '\tcolor: {{splash.codes_btn_font_colour}};\n'+
-        '\tbackground-image: url({{splash.codes_button_icon ? \'https://d247kqobagyqjh.cloudfront.net/api/file/hsHgqCkWS2OIf8P2p23G\' : \'https://d247kqobagyqjh.cloudfront.net/api/file/zbxXh1LkSiufAjkzyxai\' }});\n'+
+        '\tbackground-image: url({{splash.codes_button_icon ? codeDark : codeLight }});\n'+
         '\tbackground-position: {{splash.button_radius === \'9001px\' ? \'20px\' : \'10px\'}} 10px;\n'+
         '}\n\n'+
 
         '.social.email-access {\n'+
         '\tbackground-color: {{splash.email_button_colour}};\n'+
         '\tcolor: {{splash.email_btn_font_colour}};\n'+
-        '\tbackground-image: url({{splash.email_button_icon ? \'https://d247kqobagyqjh.cloudfront.net/api/file/Bo1KkVPRK6xu1otggMJg\' : \'https://d247kqobagyqjh.cloudfront.net/api/file/J8r124irRIahUEwwkOrw\' }});\n'+
+        '\tbackground-image: url({{splash.email_button_icon ? emailDark : emailLight }});\n'+
         '\tbackground-position: {{splash.button_radius === \'9001px\' ? \'20px\' : \'10px\'}} 10px;\n'+
         '\tborder: 1px solid {{splash.email_button_border_colour}}!important;\n'+
         '}\n\n'+
 
         '.social.email-access:hover, .social.email-access:focus {\n'+
         '\tcolor: {{splash.email_btn_font_colour}};\n'+
-        '\tbackground-image: url({{splash.email_button_icon ? \'https://d247kqobagyqjh.cloudfront.net/api/file/Bo1KkVPRK6xu1otggMJg\' : \'https://d247kqobagyqjh.cloudfront.net/api/file/J8r124irRIahUEwwkOrw\' }});\n'+
+        '\tbackground-image: url({{splash.email_button_icon ? emailDark : emailLight }});\n'+
         '\tbackground-position: {{splash.button_radius === \'9001px\' ? \'20px\' : \'10px\'}} 10px;\n'+
+        '}\n\n'+
+
+        '.social.sms-access {\n'+
+        '\tbackground-color: {{splash.sms_button_colour}};\n'+
+        '\tcolor: {{splash.sms_btn_font_colour}};\n'+
+        '\tbackground-image: url({{splash.sms_button_icon ? smsDark : smsLight }});\n'+
+        '\tbackground-position: {{splash.button_radius === \'9001px\' ? \'20px\' : \'10px\'}} 10px;\n'+
+        '\tborder: 1px solid {{splash.sms_button_border_colour}}!important;\n'+
+        '}\n\n'+
+
+        '.social.sms-access:hover, .social.sms-access:focus {\n'+
+        '\tcolor: {{splash.sms_btn_font_colour}};\n'+
+        '\tbackground-image: url({{splash.sms_button_icon ? smsDark : smsLight }});\n'+
+        '\tbackground-position: {{splash.button_radius === \'9001px\' ? \'20px\' : \'10px\'}} 10px;\n'+
+        '}\n\n'+
+
+        '.social.sms-access:hover, .social.sms-access:focus {\n'+
+        '\tcolor: {{splash.sms_btn_font_colour}};\n'+
+        '\tbackground-image: url({{splash.sms_button_icon ? smsDark : smsLight }});\n'+
+        '\tbackground-position: {{splash.button_radius === \'9001px\' ? \'20px\' : \'10px\'}} 10px;\n'+
+        '}\n\n'+
+
+        '.button.social-access::after {\n'+
+        '\tbackground-image: url({{socialDark}});\n'+
+        '}\n\n'+
+
+        '.button.email-access::after {\n'+
+        '\tbackground-image: url({{emailDark}});\n'+
+        '}\n\n'+
+
+        '.button.voucher-access::after {\n'+
+        '\tbackground-image: url({{voucherDark}});\n'+
+        '}\n\n'+
+
+        '.social.facebook {\n'+
+        '\tbackground-image: url({{facebookLogin}});\n'+
+        '}\n\n'+
+
+        '.social.facebook:hover, .social.facebook:focus {\n'+
+        '\tbackground-image: url({{facebookLogin}});\n'+
+        '}\n\n'+
+
+        '.social.google {\n'+
+        '\tbackground-image: url({{googleLogin}});\n'+
+        '}\n\n'+
+
+        '.social.google:hover, .social.google:focus {\n'+
+        '\tbackground-image: url({{googleLogin}});\n'+
+        '}\n\n'+
+
+        '.social.twitter {\n'+
+        '\tbackground-image: url({{twitterLogin}});\n'+
+        '}\n\n'+
+
+        '.social.twitter:hover, .social.twitter:focus {\n'+
+        '\tbackground-image: url({{twitterLogin}});\n'+
         '}\n\n'+
 
         '{{ splash.custom_css }}';
@@ -1190,9 +1269,12 @@ app.factory('CONSENT', [function() {
 
 }]);
 
-app.directive('consentForm', ['CONSENT', '$location', '$compile', '$window', '$rootScope', '$timeout', '$cookies', function(CONSENT, $location, $compile, $window, $rootScope, $timeout, $cookies) {
+app.directive('consentForm', ['CONSENT', '$location', '$compile', '$window', '$rootScope', '$timeout', '$cookies', 'API_URL', function(CONSENT, $location, $compile, $window, $rootScope, $timeout, $cookies, API_URL) {
 
   var link = function(scope, element, attrs) {
+
+    scope.mimoPowered = API_URL + '/splash/mimo-powered.svg';
+
     var timer;
     var cookieName = 'gdpr-20180423';
     var getCookie = $cookies.get(cookieName);
@@ -1223,14 +1305,14 @@ app.directive('consentForm', ['CONSENT', '$location', '$compile', '$window', '$r
       var template =
         '<span ng-show="gdprForm == \'false\'">'+
         '<div class="gdpr-tab close">'+
-        '<img src="https://d247kqobagyqjh.cloudfront.net/api/file/8Zw1a8xJQbCqGIjVOJF6"></img>'+
+        '<img src="{{mimoPowered}}"></img>'+
         '</div>'+
         '</span>'+
         '<span ng-show="gdprForm == \'true\'">'+
         '<div class="gdpr-back submitted" ng-click="gdprToggle()"></div>'+
         '<div class="gdpr-slider close">'+
         '<div class="gdpr-tab" ng-click="gdprToggle()">'+
-        '<img src="https://d247kqobagyqjh.cloudfront.net/api/file/8Zw1a8xJQbCqGIjVOJF6"></img>'+
+        '<img src="{{mimoPowered}}"></img>'+
         '</div>'+
         '<div class="gdpr-body">'+
         '<div class="row align-center">'+
