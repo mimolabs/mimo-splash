@@ -792,7 +792,7 @@ app.directive('displayStore', ['CT', '$cookies', '$rootScope', '$location', '$wi
 
 }]);
 
-app.directive('buildPage', ['$location', '$compile', '$window', '$rootScope', '$timeout', function($location, $compile, $window, $rootScope, $timeout) {
+app.directive('buildPage', ['$location', '$compile', '$window', '$rootScope', '$timeout', 'API_URL', function($location, $compile, $window, $rootScope, $timeout, API_URL) {
 
   var link = function(scope, element, attrs) {
 
@@ -809,7 +809,7 @@ app.directive('buildPage', ['$location', '$compile', '$window', '$rootScope', '$
       scope.passwordDark = API_URL + '/splash/password-dark.svg';
       scope.passwordLight = API_URL + '/splash/password-light.svg';
       scope.facebookLogin = API_URL + '/splash/facebook-login.png';
-      scope.twitterLogin = API_URL + '/splash/twitter-login.png';
+      scope.twitterLogin = API_URL + '/splash/twitter-login.svg';
       scope.googleLogin = API_URL + '/splash/google-login.png';
       scope.socialDark = API_URL + '/splash/social-dark.svg';
 

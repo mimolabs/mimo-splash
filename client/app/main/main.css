@@ -285,13 +285,13 @@ a.social:focus {
   border: none;
 }
 
-.social.voucher-access, .social.password-access, .social.code-access, .social.email-access {
+.social.voucher-access, .social.password-access, .social.code-access, .social.email-access, .social.sms-access {
   background-repeat: no-repeat;
   background-size: 30px;
   padding-left: 4rem;
 }
 
-.social.voucher-access:hover, .social.voucher-access:focus, .social.password-access:hover, .social.password-access:focus, .social.code-access:hover, .social.code-access:focus,  .social.email-access:focus, .social.email-access:hover {
+.social.voucher-access:hover, .social.voucher-access:focus, .social.password-access:hover, .social.password-access:focus, .social.code-access:hover, .social.code-access:focus,  .social.email-access:focus, .social.email-access:hover, .social.sms-access:hover,.social.sms-access:focus {
   background-repeat: no-repeat;
   background-size: 30px;
 }
