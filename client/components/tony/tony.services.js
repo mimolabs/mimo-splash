@@ -2,8 +2,8 @@
 
 var app = angular.module('ctLoginsApp.tony.services', ['ngResource']);
 
-app.factory('CT', ['$routeParams', '$timeout', '$cookies', '$http', '$q', '$rootScope', '$location', '$window', 'CONSENT', 'Coova', 'Client', 'Tony', 'Aruba', 'Xirrus', 'Ruckus', 'Microtik', 'Cisco', 'API_END_POINT', '$sce', '$compile',
-  function($routeParams, $timeout, $cookies, $http, $q, $rootScope, $location, $window, CONSENT, Coova, Client, Tony, Aruba, Xirrus, Ruckus, Microtik, Cisco, API_END_POINT, $sce, $compile) {
+app.factory('CT', ['$routeParams', '$timeout', '$cookies', '$http', '$q', '$rootScope', '$location', '$window', 'CONSENT', 'Coova', 'Client', 'Tony', 'Aruba', 'Xirrus', 'Ruckus', 'Microtik', 'Cisco', 'API_END_POINT', 'API_END_POINT', '$sce', '$compile',
+  function($routeParams, $timeout, $cookies, $http, $q, $rootScope, $location, $window, CONSENT, Coova, Client, Tony, Aruba, Xirrus, Ruckus, Microtik, Cisco, API_END_POINT, API_URL, $sce, $compile) {
 
     var auth, client, loginDetails = {};
 
@@ -62,12 +62,12 @@ app.factory('CT', ['$routeParams', '$timeout', '$cookies', '$http', '$q', '$root
       template =
 
         'html {' +
-        '\tbackground: url({{ splash.background_image_name }}) no-repeat center center fixed;\n' +
+        '\tbackground: url({{ API_URL + "/" + splash.background_image_name }}) no-repeat center center fixed;\n' +
         '\t-webkit-background-size: cover;\n' +
         '\t-moz-background-size: cover;\n' +
         '\t-o-background-size: cover;\n'+
         '\tbackground-size: cover;\n'+
-        '\tbackground-color: {{splash.background_image_name ? \'transparent\' : splash.body_background_colour || \'#32373A\'}}!important;\n'+
+        '\tbackground-color: {{ API_URL + "/" + splash.background_image_name ? \'transparent\' : splash.body_background_colour || \'#32373A\'}}!important;\n'+
         '}\n\n'+
 
         'body {\n'+

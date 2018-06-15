@@ -2,9 +2,9 @@
 
 var app = angular.module('ctLoginsApp.logins.controller', []);
 
-app.controller('LoginsController', ['$rootScope', '$scope', '$routeParams', 'CT', '$location', '$compile', '$localStorage', '$timeout', '$window', 'Client', 'CTDebugger', 'Ping', 'DebugMe', '$http', '$cookies',
+app.controller('LoginsController', ['$rootScope', '$scope', '$routeParams', 'CT', '$location', '$compile', '$localStorage', '$timeout', '$window', 'Client', 'CTDebugger', 'Ping', 'DebugMe', '$http', '$cookies', 'API_URL',
 
-  function($rootScope, $scope, $routeParams, CT, $location, $compile, $localStorage, $timeout, $window, Client, CTDebugger, Ping, DebugMe, $http, $cookies) {
+  function($rootScope, $scope, $routeParams, CT, $location, $compile, $localStorage, $timeout, $window, Client, CTDebugger, Ping, DebugMe, $http, $cookies, API_URL) {
 
     $rootScope.bodylayout = 'login-layout';
 
@@ -41,6 +41,7 @@ app.controller('LoginsController', ['$rootScope', '$scope', '$routeParams', 'CT'
           $scope.cart       = { cart_id: null, products: null };
           $scope.custom_url = results.splash.custom_url;
           $scope.splash     = results.splash;
+          $scope.api_url    = API_URL
           $rootScope.gaid   = results.splash.google_analytics_id;
           $rootScope.splash = {
             splash_name: $scope.splash.splash_name,

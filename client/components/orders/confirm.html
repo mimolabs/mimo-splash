@@ -4,7 +4,7 @@
     <div class='row'>
       <div class='small-12'>
         <div class="location_logo ng-scope" ng-hide="splash.header_image_name">
-          <a href='{{splash.website}}'><img src="{{ splash.logo_file_name }}" ng-class="splash.header_image_type == 1 ? 'logo' : 'banner'"></img></a>
+          <a href='{{splash.website}}'><img src="{{ api_url + '/' + splash.logo_file_name }}" ng-class="splash.header_image_type == 1 ? 'logo' : 'banner'"></img></a>
         </div>
       </div>
     </div>
