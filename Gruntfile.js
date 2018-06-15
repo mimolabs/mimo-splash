@@ -9,17 +9,16 @@ module.exports = function (grunt) {
     localConfig = {};
   }
 
-  // var defaultConfig = require('./default-config.js');
+  var defaultConfig = require('./default-config.js');
 
-  var buildConfig;
   try {
-    buildConfig = require('/etc/mimo/build.config.js');
+    defaultConfig = require('/etc/mimo/build.config.js');
   } catch(e) {
     console.log('No build config, continuing.....');
   }
 
   // var config = _.merge(localConfig, buildConfig, defaultConfig);
-  var config = _.merge(localConfig, buildConfig);
+  var config = _.merge(localConfig, defaultConfig);
 
   grunt.loadNpmTasks('grunt-ng-constant');
 
