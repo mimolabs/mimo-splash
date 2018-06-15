@@ -152,7 +152,6 @@ input[type=text], input[type=password], input[type=email], textarea {
 
 .button.social-access::after {
   content: "";
-  background: url(https://d247kqobagyqjh.cloudfront.net/api/file/jwTsGE9nQuqP6PY6qTTl);
   background-repeat: no-repeat;
   background-position: 10px 10px;
   background-size: 30px;
@@ -167,7 +166,6 @@ input[type=text], input[type=password], input[type=email], textarea {
 
 .button.email-access::after {
   content: "";
-  background: url(https://d247kqobagyqjh.cloudfront.net/api/file/cvKFLmhbRtkSc2FcLYjM);
   background-repeat: no-repeat;
   background-position: 10px 10px;
   background-size: 30px;
@@ -182,7 +180,6 @@ input[type=text], input[type=password], input[type=email], textarea {
 
 .button.voucher-access::after {
   content: "";
-  background: url(https://d247kqobagyqjh.cloudfront.net/api/file/tDYTNvv6R2mFUBM4yLgj);
   background-repeat: no-repeat;
   background-position: 10px 10px;
   background-size: 30px;
@@ -237,28 +234,8 @@ a.social:focus {
   color: #FFF;
 }
 
-.social.sms-access {
-  background-color: #ef5350;
-  background-image: url(https://d247kqobagyqjh.cloudfront.net/api/file/Twod7nCQemBNJ8lBP8MQ);
-  background-repeat: no-repeat;
-  background-position: 10px 10px;
-  background-size: 30px;
-  border: none;
-  padding-left: 4rem;
-}
-
-.social.sms-access:hover,.social.sms-access:focus {
-  background: #e53935;
-  background-image: url(https://d247kqobagyqjh.cloudfront.net/api/file/Twod7nCQemBNJ8lBP8MQ);
-  background-repeat: no-repeat;
-  background-position: 10px 10px;
-  background-size: 30px;
-  border: none;
-}
-
 .social.facebook {
   background-color: #4267B2;
-  background-image: url(https://d247kqobagyqjh.cloudfront.net/api/file/b2zyjsv5R7ioRZjkywG7);
   background-repeat: no-repeat;
   background-position: 10px 10px;
   background-size: 30px;
@@ -268,7 +245,6 @@ a.social:focus {
 
 .social.facebook:hover,.social.facebook:focus {
   background: #3b5998;
-  background-image: url(https://d247kqobagyqjh.cloudfront.net/api/file/b2zyjsv5R7ioRZjkywG7);
   background-repeat: no-repeat;
   background-position: 10px 10px;
   background-size: 30px;
@@ -277,7 +253,6 @@ a.social:focus {
 
 .social.google {
   background-color: #4285f4;
-  background-image: url(https://d247kqobagyqjh.cloudfront.net/api/file/1FGFU9fQxK6T7fxp5zwd);
   background-repeat: no-repeat;
   background-position: 10px 10px;
   background-size: 30px;
@@ -287,7 +262,6 @@ a.social:focus {
 
 .social.google:hover,.social.google:focus {
   background-color: #2674f2;
-  background-image: url(https://d247kqobagyqjh.cloudfront.net/api/file/1FGFU9fQxK6T7fxp5zwd);
   background-repeat: no-repeat;
   background-position: 10px 10px;
   background-size: 30px;
@@ -296,7 +270,6 @@ a.social:focus {
 
 .social.twitter {
   background-color: #1DA1F2;
-  background-image: url(https://d247kqobagyqjh.cloudfront.net/api/file/GvF246oSHCmO4A4Jqm2w);
   background-repeat: no-repeat;
   background-position: 10px 10px;
   background-size: 30px;
@@ -306,20 +279,19 @@ a.social:focus {
 
 .social.twitter:hover,.social.twitter:focus {
   background: #0d8bd9;
-  background-image: url(https://d247kqobagyqjh.cloudfront.net/api/file/GvF246oSHCmO4A4Jqm2w);
   background-repeat: no-repeat;
   background-position: 10px 10px;
   background-size: 30px;
   border: none;
 }
 
-.social.voucher-access, .social.password-access, .social.code-access, .social.email-access {
+.social.voucher-access, .social.password-access, .social.code-access, .social.email-access, .social.sms-access {
   background-repeat: no-repeat;
   background-size: 30px;
   padding-left: 4rem;
 }
 
-.social.voucher-access:hover, .social.voucher-access:focus, .social.password-access:hover, .social.password-access:focus, .social.code-access:hover, .social.code-access:focus,  .social.email-access:focus, .social.email-access:hover {
+.social.voucher-access:hover, .social.voucher-access:focus, .social.password-access:hover, .social.password-access:focus, .social.code-access:hover, .social.code-access:focus,  .social.email-access:focus, .social.email-access:hover, .social.sms-access:hover,.social.sms-access:focus {
   background-repeat: no-repeat;
   background-size: 30px;
 }
