@@ -819,12 +819,12 @@ app.directive('buildPage', ['$location', '$compile', '$window', '$rootScope', '$
       template =
 
         'html {' +
-        '\tbackground: url({{ splash.background_image_name }}) no-repeat center center fixed;\n' +
+        '\tbackground: url({{ api_url + "/" + splash.background_image_name }}) no-repeat center center fixed;\n' +
         '\t-webkit-background-size: cover;\n' +
         '\t-moz-background-size: cover;\n' +
         '\t-o-background-size: cover;\n'+
         '\tbackground-size: cover;\n'+
-        '\tbackground-color: {{splash.background_image_name ? \'transparent\' : splash.body_background_colour}}!important;\n'+
+        '\tbackground-color: {{ splash.background_image_name ? \'transparent\' : api_url + "/" + splash.body_background_colour}}!important;\n'+
         '}\n\n'+
 
         'body {\n'+

@@ -49,10 +49,10 @@ $(document).ready( function() {
   <div class='row'>
     <div class='small-12'>
       <div class="location_logo" ng-if="splash.header_image_type == 1">
-        <img src="{{ splash.logo_file_name }}" ng-class="splash.header_image_type == 1 ? 'logo' : 'banner'"></img>
+        <img src="{{ api_url + '/' + splash.logo_file_name }}" ng-class="splash.header_image_type == 1 ? 'logo' : 'banner'"></img>
       </div>
       <div class="banner" ng-if="splash.header_image_type == 2">
-        <img src="{{ splash.header_image_name }}" class='banner'></img>
+        <img src="{{ api_url + '/' + splash.header_image_name }}" class='banner'></img>
       </div>
     </div>
   </div>
